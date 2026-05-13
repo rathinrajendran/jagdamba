@@ -266,25 +266,53 @@ add_action("init", "create_product_cpt");
 /* --------------------------------------------------------------------------
    PRODUCT CATEGORIES CPT
    -------------------------------------------------------------------------- */
+/* --------------------------------------------------------------------------
+   PRODUCT CATEGORIES CPT
+   -------------------------------------------------------------------------- */
 
 function jagdamba_product_categories_cpt()
 {
   register_post_type('product_categories', [
+
     'labels' => [
       'name' => 'Product Categories',
       'singular_name' => 'Product Category',
+      'add_new' => 'Add Category',
+      'add_new_item' => 'Add New Category',
+      'edit_item' => 'Edit Category',
     ],
-    'public'      => true, // Must be true to allow the "View Details" link to work
+
+    'public' => true,
+
     'has_archive' => true,
-    'show_ui'     => true,
+
+    'show_ui' => true,
+
     'show_in_menu' => 'content-hub',
-    'menu_icon'   => 'dashicons-category',
-    'supports'    => ['title', 'editor', 'thumbnail'],
-    'rewrite'     => ['slug' => 'product-range'],
+
+    'menu_icon' => 'dashicons-category',
+
+    'supports' => [
+      'title',
+      'thumbnail'
+    ],
+
+    'rewrite' => [
+      'slug' => 'our-product',
+      'with_front' => false,
+    ],
+
+    'show_in_rest' => true,
+
   ]);
 }
+
 add_action('init', 'jagdamba_product_categories_cpt');
 
+
+/* --------------------------------------------------------------------------
+   PRODUCT CATEGORY FIELDS
+   -------------------------------------------------------------------------- */
 
 add_action("acf/init", function () {
 
@@ -300,10 +328,62 @@ add_action("acf/init", function () {
 
     "fields" => [
 
+      /*
+      |--------------------------------------------------------------------------
+      | HERO SECTION
+      |--------------------------------------------------------------------------
+      */
+
+      [
+        "key" => "tab_category_hero",
+        "label" => "Hero Section",
+        "type" => "tab",
+        "placement" => "top",
+      ],
+
+      [
+        "key" => "field_product_category_hero_title",
+
+        "label" => "Hero Title",
+
+        "name" => "hero_title",
+
+        "type" => "text",
+
+        "default_value" => "Our Products",
+      ],
+
+      [
+        "key" => "field_product_category_hero_bg",
+
+        "label" => "Hero Background Image",
+
+        "name" => "hero_bg",
+
+        "type" => "image",
+
+        "return_format" => "array",
+
+        "preview_size" => "large",
+      ],
+
+      /*
+      |--------------------------------------------------------------------------
+      | CATEGORY CONTENT
+      |--------------------------------------------------------------------------
+      */
+
+      [
+        "key" => "tab_category_content",
+        "label" => "Category Content",
+        "type" => "tab",
+        "placement" => "top",
+      ],
+
       [
         "key" => "field_product_category_image",
 
-        "label" => "Category Image",
+        "label" => "Category Thumbnail",
 
         "name" => "category_image",
 
@@ -322,6 +402,8 @@ add_action("acf/init", function () {
         "name" => "category_description",
 
         "type" => "textarea",
+
+        "rows" => 4,
       ],
 
     ],
@@ -342,8 +424,12 @@ add_action("acf/init", function () {
 
     "style" => "seamless",
 
+    "label_placement" => "top",
+
   ]);
 });
+ 
+
 /* --------------------------------------------------------------------------
    CLIENTS
    -------------------------------------------------------------------------- */
