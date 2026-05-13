@@ -1,0 +1,50 @@
+/*
+Theme Name: Jagdamba Theme
+Author: Rethin
+Version: 1.0
+*/
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Montserrat", sans-serif;
+}
+
+/* Optional: ensure all elements inherit */
+* {
+  font-family: inherit;
+}
+
+.web-logo img {
+  object-fit: contain;
+  height: 55px;
+}
+
+#menu-menu li a {
+  font-size: 12px;
+  font-weight: 100;
+}
+
+.myHeroSlider {
+  width: 100%;
+  height: calc(100vh + 60px) !important;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #087c35 !important;
+  background: #087c35 !important;
+}
+.font-montserrat {
+  font-family: "Montserrat", sans-serif;
+}
+
+.font-roboto {
+  font-family: "Roboto", sans-serif;
+}
